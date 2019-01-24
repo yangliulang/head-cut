@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>头像剪裁</title>
+    <style type="text/css">
+      body,
+      div,
+      dl,
+      dt,
+      dd,
+      ul,
+      ol,
+      li,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      pre,
+      form,
+      fieldset,
+      input,
+      textarea,
+      p,
+      blockquote,
+      th,
+      td {
+        margin: 0;
+        padding: 0;
+      }
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+      fieldset,
+      img {
+        border: 0;
+      }
+      address,
+      caption,
+      cite,
+      code,
+      dfn,
+      em,
+      strong,
+      th,
+      var {
+        font-style: normal;
+        font-weight: normal;
+      }
+      ol,
+      ul {
+        list-style: none;
+      }
+      caption,
+      th {
+        text-align: left;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-size: 100%;
+        font-weight: normal;
+      }
+      q:before,
+      q:after {
+        content: ;
+      }
+      abbr,
+      acronym {
+        border: 0;
+      }
+      body {
+        padding: 50px;
+        font-size: 12px;
+      }
+      a {
+        text-decoration: none;
+      }
+
+      body {
+        background-color: #000;
+      }
+      .clip-wrapper {
+        padding: 20px;
+        position: relative;
+        width: 600px;
+        height: 600px;
+        background-color: #eee;
+      }
+      .clip-box {
+        position: relative;
+        width: 200px;
+        height: 300px;
+        text-align: center;
+        background-color: #333;
+      }
+      .clip-box img {
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      .clip-box img.clip-layer-bg {
+        opacity: 0.3;
+      }
+      .clip-box img.clip-layer {
+        clip: rect(0 100px 150px 0);
+      }
+      .clip-move {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100px;
+        height: 150px;
+        border: 1px solid #fff;
+        box-sizing: border-box;
+        cursor: move;
+      }
+      .clip-move span {
+        position: absolute;
+        display: block;
+        width: 8px;
+        height: 8px;
+        border-radius: 4px;
+        background-color: #fff;
+      }
+      .clip-move .left-up {
+        left: -4px;
+        top: -4px;
+        cursor: nw-resize;
+      }
+      .clip-move .up {
+        left: 50%;
+        top: -4px;
+        margin-left: -4px;
+        cursor: n-resize;
+      }
+      .clip-move .right-up {
+        right: -4px;
+        top: -4px;
+        margin-left: -4px;
+        cursor: ne-resize;
+      }
+      .clip-move .right {
+        right: -4px;
+        top: 50%;
+        margin-top: -4px;
+        cursor: e-resize;
+      }
+      .clip-move .right-down {
+        right: -4px;
+        bottom: -4px;
+        cursor: se-resize;
+      }
+      .clip-move .down {
+        left: 50%;
+        bottom: -4px;
+        margin-left: -4px;
+        cursor: s-resize;
+      }
+      .clip-move .left-down {
+        left: -4px;
+        bottom: -4px;
+        cursor: sw-resize;
+      }
+      .clip-move .left {
+        left: -4px;
+        top: 50%;
+        margin-top: -4px;
+        cursor: w-resize;
+      }
+
+      .clip-view {
+        position: absolute;
+        left: 230px;
+        top: 20px;
+        width: 200px;
+        height: 300px;
+        overflow: hidden;
+      }
+      .clip-view img.clip-layer {
+        position: absolute;
+        clip: rect(0 100px 150px 0);
+      }
+    </style>
+    <script src="jq.js"></script>
+    <script src="clip.js"></script>
+  </head>
+  <body>
+    <div class="clip-wrapper">
+      <div id="J_ClipPicture" class="clip-box">
+        <img class="clip-layer-bg" src="3.jpg" height="100%" width="100%" />
+        <img class="clip-layer" src="3.jpg" height="100%" width="100%" />
+        <div class="clip-move">
+          <span class="left-up"></span> <span class="up"></span>
+          <span class="right-up"></span> <span class="right"></span>
+          <span class="right-down"></span> <span class="down"></span>
+          <span class="left-down"></span> <span class="left"></span>
+        </div>
+      </div>
+      <div class="clip-view">
+        <img class="clip-layer" src="3.jpg" height="100%" width="100%" />
+      </div>
+    </div>
+
+    <script>
+      $(function() {
+        new ClipPicture($('#J_ClipPicture'), {
+          clipWidth: 20,
+          clipHeight: 500
+        });
+      });
+    </script>
+  </body>
+</html>
